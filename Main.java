@@ -1,10 +1,11 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
-    static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
 
         Service service = new Service();
 
@@ -39,7 +40,6 @@ public class Main {
                 new Jogador("Daniel", 9, "Oposto")
         };
 
-
         int opcao;
 
         do {
@@ -48,21 +48,29 @@ public class Main {
             System.out.println("       O que voce deseja fazer?");
             System.out.println("==============================");
 
-            System.out.println("1 - Mostrar quadra");
+            System.out.println("1 - Jogar rodada");
             System.out.println("2 - Rotacionar Time A");
             System.out.println("3 - Rotacionar Time B");
             System.out.println("4 - Substituir jogador Time A");
             System.out.println("5 - Substituir jogador Time B");
             System.out.println("6 - Mostrar jogadores");
+            System.out.println("7 - Maiores pontuadores");
             System.out.println("0 - Sair");
 
-            System.out.print("\nEscolha: ");
+            System.out.print("\nEscolha uma opção: ");
             opcao = scanner.nextInt();
 
             switch (opcao) {
 
                 case 1:
-                    service.mostrarQuadra(timeA, timeB);
+                    int selecionaTime = random.nextInt(2);
+                    int selecionaJogador = random.nextInt(6);
+
+                    if(selecionaTime == 0){
+                        timeA[selecionaJogador].pontuar();
+                    }else {
+                        timeB[selecionaJogador].pontuar();
+                    }
                     break;
 
                 case 2:
@@ -85,9 +93,12 @@ public class Main {
                     service.mostrarJogadores(timeA, reservasA, "TIME A");
                     service.mostrarJogadores(timeB, reservasB, "TIME B");
                     break;
+                case 7:
+                    
 
                 case 0:
                     System.out.println("Programa encerrado.");
+                    scanner.close();
                     break;
 
                 default:
