@@ -9,6 +9,9 @@ public class Main {
 
         Service service = new Service();
 
+        int timeEscolhido;
+        int opcao;
+
         Jogador[] timeA = {
                 new Jogador("Joao", 1, "Levantador"),
                 new Jogador("Pedro", 2, "Ponteiro"),
@@ -40,8 +43,6 @@ public class Main {
                 new Jogador("Daniel", 9, "Oposto")
         };
 
-        int opcao;
-
         do {
 
             System.out.println("\n==============================");
@@ -51,11 +52,11 @@ public class Main {
             System.out.println("1 - Jogar rodada");
             System.out.println("2 - Rotacionar Time A");
             System.out.println("3 - Rotacionar Time B");
-            System.out.println("4 - Substituir jogador Time A");
-            System.out.println("5 - Substituir jogador Time B");
+            System.out.println("4 - Substituir jogador");
+            System.out.println("5 - Adicionar um reserva");
             System.out.println("6 - Mostrar jogadores");
             System.out.println("7 - Maiores pontuadores");
-            System.out.println("0 - Sair");
+            System.out.println("0 - Finalizar partida");
 
             System.out.print("\nEscolha uma opção: ");
             opcao = scanner.nextInt();
@@ -84,9 +85,72 @@ public class Main {
                     break;
 
                 case 4:
+
+                    System.out.println("\n------------------------------");
+                    System.out.println("       Placa de Substituição!!");
+                    System.out.println("------------------------------");
+
+                    System.out.print("Digite o número do jogador titular que deseja substituir: ");
+                    int numeroTitular = scanner.nextInt();
+
+                    System.out.print("Digite o número do jogador reserva que deseja substituir: ");
+                    int numeroReserva = scanner.nextInt();
+
+                    System.out.println("Digite 1 para substituir no time A ou 2 para substituir no time B: ");
+                    timeEscolhido = scanner.nextInt();
+
+                    if (timeEscolhido == 1) {
+                        Jogador jogadorReserva = service.buscarJogadorPorNumero(reservasA, numeroReserva);
+                        Jogador jogadorTitular = service.buscarJogadorPorNumero(timeA, numeroTitular);
+                        if (jogadorReserva == null || jogadorTitular == null) {
+                            System.out.println("Jogador não encontrado!");
+                            break;
+                        }else {
+                            service.substituir(timeA, reservasA, jogadorTitular, jogadorReserva);
+                        }
+                    } else if(timeEscolhido == 2) {
+                        Jogador jogadorReserva = service.buscarJogadorPorNumero(reservasB, numeroReserva);
+                        Jogador jogadorTitular = service.buscarJogadorPorNumero(timeB, numeroTitular);
+                        if (jogadorReserva == null || jogadorTitular == null) {
+                            System.out.println("Jogador não encontrado!");
+                            break;
+                        }else {
+                            service.substituir(timeB, reservasB, jogadorTitular, jogadorReserva);
+                        }
+                    }else {
+                        System.out.println("Time inválido!");
+                    }
                     break;
 
                 case 5:
+                    System.out.println("\n------------------------------");
+                    System.out.println("       Janela de transferencia!!");
+                    System.out.println("------------------------------");
+
+                    scanner.nextLine();
+                    System.out.print("Digite o nome do jogador reserva que deseja adicionar: ");
+                    String nomeReserva = scanner.nextLine();
+
+                    System.out.print("Digite o número do jogador reserva que deseja adicionar: ");
+                    int numeroReservaNovo = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.print("Digite a posição do jogador reserva que deseja adicionar: ");
+                    String posicaoReserva = scanner.nextLine();
+
+                    System.out.println("Digite 1 para adicionar no time A ou 2 para adicionar no time B: ");
+                    timeEscolhido = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Jogador novoReserva = new Jogador(nomeReserva, numeroReservaNovo, posicaoReserva);
+                    
+                    if (timeEscolhido == 1) {
+                        reservasA = service.adicionarReserva(reservasA, novoReserva);
+                    } else if (timeEscolhido == 2) {
+                        reservasB = service.adicionarReserva(reservasB, novoReserva);
+                    } else {
+                        System.out.println("Time inválido!");
+                    }
                     break;
 
                 case 6:
@@ -95,9 +159,9 @@ public class Main {
                     break;
                 case 7:
                     
-
+                    break;
                 case 0:
-                    System.out.println("Programa encerrado.");
+                    System.out.println("Partida encerrada.");
                     scanner.close();
                     break;
 
@@ -106,7 +170,5 @@ public class Main {
             }
 
         } while (opcao != 0);
-
-        scanner.close();
     }
 }
