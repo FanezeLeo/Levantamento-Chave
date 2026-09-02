@@ -151,4 +151,27 @@ public class Service {
                 return null;
         }
 
+        public void exibirRanking(Jogador[] timeA, Jogador[] timeB) {
+                Jogador[] jogadores =  new Jogador[timeA.length + timeB.length];
+
+                for (int i = 0; i < timeA.length; i++) {
+                        jogadores[i] = timeA[i];
+                };
+
+                for (int i = 0; i < timeB.length; i++) {
+                        jogadores[timeA.length + i] = timeB[i];
+                }
+
+                Arrays.sort(jogadores, (j1, j2) ->
+                        Integer.compare(j2.getPontos(), j1.getPontos())
+                );
+
+                System.out.println("\n====================");
+                System.out.println("RANKING DE PONTUADORES");
+                System.out.println("====================");
+
+                for (Jogador jogador: jogadores) {
+                        System.out.println(jogador.getNome() + " - " + jogador.getPontos() + " pontos");
+                }
+        }
 }
