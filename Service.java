@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Service {
         public void mostrarQuadra(Jogador[] timeA, Jogador[] timeB) {
 
@@ -102,24 +104,22 @@ public class Service {
                 time[0] = auxiliar;
         }
 
-        public void substituir(Jogador[] titulares, Jogador[] reservas) {
+        public void substituir(Jogador[] titulares, Jogador[] reservas, Jogador jogadorTitular, Jogador jogadorReserva) {
+                int indexTitular = Arrays.asList(titulares).indexOf(jogadorTitular);
+                int indexReserva = Arrays.asList(reservas).indexOf(jogadorReserva);
 
-                System.out.println("\n==============================");
-                System.out.println("       SUBSTITUIÇÃO");
-                System.out.println("==============================");
-
-                System.out.println("\nTITULARES:");
-
-                for (int i = 0; i < titulares.length; i++) {
-                        System.out.println(titulares[i]);
+                if (indexTitular != -1 && indexReserva != -1) {
+                        titulares[indexTitular] = jogadorReserva;
+                        reservas[indexReserva] = jogadorTitular;
+                } else {
+                        System.out.println("Jogador não encontrado!");
                 }
+        }
 
-                System.out.println("\nRESERVAS:");
-
-                for (int i = 0; i < reservas.length; i++) {
-                        System.out.println(reservas[i]);
-                }
-
+        public Jogador[] adicionarReserva(Jogador[] reservas, Jogador novoReserva) {
+                reservas = Arrays.copyOf(reservas, 1 + reservas.length);
+                reservas[reservas.length - 1] = novoReserva;
+                return reservas;
         }
 
         public void mostrarJogadores(Jogador[] titulares, Jogador[] reservas, String nomeTime) {
@@ -140,6 +140,15 @@ public class Service {
                 for (Jogador jogador : reservas) {
                         System.out.println(jogador);
                 }
+        }
+
+        public Jogador buscarJogadorPorNumero(Jogador[] jogadores, int numero) {
+                for (Jogador jogador : jogadores) {
+                        if (jogador.getNumero() == numero) {
+                                return jogador;
+                        }
+                }
+                return null;
         }
 
 }

@@ -37,6 +37,6 @@ public class Jogador {
 
     @Override
     public String toString() {
-        return numero + " - " + nome;
+        return numero + " - " + nome + " = " + pontos + " pontos";
     }
 }
