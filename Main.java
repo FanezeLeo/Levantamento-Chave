@@ -54,8 +54,7 @@ public class Main {
             System.out.println("4 - Substituir jogador Time A");
             System.out.println("5 - Substituir jogador Time B");
             System.out.println("6 - Mostrar jogadores");
-            System.out.println("7 - Mostrar quadra");
-            System.out.println("8 - Maiores pontuadores");
+            System.out.println("7 - Maiores pontuadores");
             System.out.println("0 - Sair");
 
             System.out.print("\nEscolha uma opção: ");
@@ -95,8 +94,8 @@ public class Main {
                     service.mostrarJogadores(timeB, reservasB, "TIME B");
                     break;
                 case 7:
-                    service.mostrarQuadra(timeA, timeB);
-                    break;
+                    
+
                 case 0:
                     System.out.println("Programa encerrado.");
                     scanner.close();

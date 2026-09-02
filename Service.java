@@ -104,6 +104,22 @@ public class Service {
 
         public void substituir(Jogador[] titulares, Jogador[] reservas) {
 
+                System.out.println("\n==============================");
+                System.out.println("       SUBSTITUIÇÃO");
+                System.out.println("==============================");
+
+                System.out.println("\nTITULARES:");
+
+                for (int i = 0; i < titulares.length; i++) {
+                        System.out.println(titulares[i]);
+                }
+
+                System.out.println("\nRESERVAS:");
+
+                for (int i = 0; i < reservas.length; i++) {
+                        System.out.println(reservas[i]);
+                }
+
         }
 
         public void mostrarJogadores(Jogador[] titulares, Jogador[] reservas, String nomeTime) {
