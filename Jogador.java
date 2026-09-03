@@ -23,20 +23,20 @@ public class Jogador {
         return posicao;
     }
 
-    public int getPontos(){
+    public int getPontos() {
         return pontos;
     }
 
-    public void setPontos(int pontos){
+    public void setPontos(int pontos) {
         this.pontos = pontos;
     }
 
-    public void pontuar(){
+    public void pontuar() {
         this.pontos++;
     }
 
     @Override
     public String toString() {
-        return numero + " - " + nome + " = " + pontos + " pontos";
+        return numero + " - " + nome + " (" + posicao + ") = " + pontos + " pontos";
     }
 }

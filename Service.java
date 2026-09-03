@@ -1,88 +1,67 @@
 import java.util.Arrays;
 
 public class Service {
+
         public void mostrarQuadra(Jogador[] timeA, Jogador[] timeB) {
 
                 System.out.println("\n");
-                System.out.println("╔══════════════════════════════════════════════════════════════════════╗");
-                System.out.println("║                         QUADRA DE VÔLEI                            ║");
-                System.out.println("╠══════════════════════════════════════════════════════════════════════╣");
+                System.out.println("╔════════════════════════════════════════════════════════════════════════════╗");
+                System.out.println("║                              QUADRA DE VÔLEI                               ║");
+                System.out.println("╠════════════════════════════════════════════════════════════════════════════╣");
+                System.out.println("║                                                                            ║");
+                System.out.println("║                   TIME A                         TIME B                    ║");
+                System.out.println("║                                                                            ║");
 
-                System.out.println("║                                                                      ║");
-                System.out.println("║              TIME A                               TIME B             ║");
-                System.out.println("║                                                                      ║");
-
-                // ==============================
-                // PARTE DE CIMA - ATAQUE
-                // ==============================
+                System.out.println("║          ┌───────────────────────┐      ┌───────────────────────┐          ║");
 
                 System.out.printf(
-                                "║     ┌───────────────────────┐       ┌───────────────────────┐     ║%n");
+                        "║          │[4] %-19s│      │[2] %-19s│          ║%n",
+                        timeA[3].getNome(),
+                        timeB[1].getNome());
+
+                System.out.println("║          │                       │      │                       │          ║");
 
                 System.out.printf(
-                                "║     │  [4] %-13s │       │  [2] %-13s │     ║%n",
-                                timeA[3].getNome(),
-                                timeB[1].getNome());
+                        "║          │[3] %-19s│      │[3] %-19s│          ║%n",
+                        timeA[2].getNome(),
+                        timeB[2].getNome());
+
+                System.out.println("║          │                       │      │                       │          ║");
 
                 System.out.printf(
-                                "║     │                         │       │                         │     ║%n");
+                        "║          │[2] %-19s│      │[4] %-19s│          ║%n",
+                        timeA[1].getNome(),
+                        timeB[3].getNome());
+
+                System.out.println("║          └───────────────────────┘      └───────────────────────┘          ║");
+
+                System.out.println("║═══════════════════════════════════ REDE ═══════════════════════════════════║");
+
+                System.out.println("║          ┌───────────────────────┐      ┌───────────────────────┐          ║");
 
                 System.out.printf(
-                                "║     │  [3] %-13s │       │  [3] %-13s │     ║%n",
-                                timeA[2].getNome(),
-                                timeB[2].getNome());
+                        "║          │[5] %-19s│      │[5] %-19s│          ║%n",
+                        timeA[4].getNome(),
+                        timeB[4].getNome());
+
+                System.out.println("║          │                       │      │                       │          ║");
 
                 System.out.printf(
-                                "║     │                         │       │                         │     ║%n");
+                        "║          │[6] %-19s│      │[6] %-19s│          ║%n",
+                        timeA[5].getNome(),
+                        timeB[5].getNome());
+
+                System.out.println("║          │                       │      │                       │          ║");
 
                 System.out.printf(
-                                "║     │  [2] %-13s │       │  [4] %-13s │     ║%n",
-                                timeA[1].getNome(),
-                                timeB[3].getNome());
+                        "║          │[1] %-19s│      │[1] %-19s│          ║%n",
+                        timeA[0].getNome(),
+                        timeB[0].getNome());
 
-                System.out.printf(
-                                "║     └───────────────────────┘       └───────────────────────┘     ║%n");
+                System.out.println("║          └───────────────────────┘      └───────────────────────┘          ║");
 
-                // ==============================
-                // REDE
-                // ==============================
-
-                System.out.println(
-                                "║═══════════════════════════════ REDE ════════════════════════════════║");
-
-                // ==============================
-                // PARTE DE BAIXO - DEFESA
-                // ==============================
-
-                System.out.printf(
-                                "║     ┌───────────────────────┐       ┌───────────────────────┐     ║%n");
-
-                System.out.printf(
-                                "║     │  [5] %-13s │       │  [5] %-13s │     ║%n",
-                                timeA[4].getNome(),
-                                timeB[4].getNome());
-
-                System.out.printf(
-                                "║     │                         │       │                         │     ║%n");
-
-                System.out.printf(
-                                "║     │  [6] %-13s │       │  [6] %-13s │     ║%n",
-                                timeA[5].getNome(),
-                                timeB[5].getNome());
-
-                System.out.printf(
-                                "║     │                         │       │                         │     ║%n");
-
-                System.out.printf(
-                                "║     │  [1] %-13s │       │  [1] %-13s │     ║%n",
-                                timeA[0].getNome(),
-                                timeB[0].getNome());
-
-                System.out.printf(
-                                "║     └───────────────────────┘       └───────────────────────┘     ║%n");
-
-                System.out.println("║                                                                      ║");
-                System.out.println("╚══════════════════════════════════════════════════════════════════════╝");
+                System.out.println("║                                                                            ║");
+                System.out.println("╚════════════════════════════════════════════════════════════════════════════╝");
 
                 System.out.println();
                 System.out.println("Posições:");
@@ -131,7 +110,6 @@ public class Service {
                 System.out.println("\nTITULARES:");
 
                 for (int i = 0; i < titulares.length; i++) {
-
                         System.out.println(titulares[i]);
                 }
 
@@ -151,80 +129,67 @@ public class Service {
                 return null;
         }
 
-        //JUNTANDO VETORES
-        public Jogador[] merge(Jogador[] vetorA, Jogador[] vetorB) {
 
-                Jogador[] resultado = new Jogador[vetorA.length + vetorB.length];
+        public Jogador[] juntarJogadores(Jogador[]... grupos) {
+                int tamanhoTotal = 0;
+                for (Jogador[] grupo : grupos) {
+                        tamanhoTotal += grupo.length;
+                }
 
-                System.arraycopy(vetorA, 0, resultado, 0, vetorA.length);
-                System.arraycopy(vetorB, 0, resultado, vetorA.length, vetorB.length);
+                Jogador[] todos = new Jogador[tamanhoTotal];
+                int posicao = 0;
 
-                return resultado;
+                for (Jogador[] grupo : grupos) {
+                        for (Jogador jogador : grupo) {
+                                todos[posicao] = jogador;
+                                posicao++;
+                        }
+                }
+
+                return todos;
         }
 
-        //CONTANDO PONTOS DE CADA TIME
-        public int contaPontos(Jogador[] jogadores) {
-                int total = 0;
 
+        public void ordenarPorPontuacao(Jogador[] jogadores) {
+                int n = jogadores.length;
+
+                for (int i = 0; i < n - 1; i++) {
+                        int indexMaior = i;
+
+                        for (int j = i + 1; j < n; j++) {
+                                if (jogadores[j].getPontos() > jogadores[indexMaior].getPontos()) {
+                                        indexMaior = j;
+                                }
+                        }
+
+                        if (indexMaior != i) {
+                                Jogador temp = jogadores[i];
+                                jogadores[i] = jogadores[indexMaior];
+                                jogadores[indexMaior] = temp;
+                        }
+                }
+        }
+
+
+        public void mostrarRanking(Jogador[] jogadores) {
+                Jogador[] copia = Arrays.copyOf(jogadores, jogadores.length);
+                ordenarPorPontuacao(copia);
+
+                System.out.println("\n==============================");
+                System.out.println("     MAIORES PONTUADORES");
+                System.out.println("==============================");
+
+                for (int i = 0; i < copia.length; i++) {
+                        System.out.println((i + 1) + "º - " + copia[i]);
+                }
+        }
+
+
+        public int somarPontos(Jogador[] jogadores) {
+                int total = 0;
                 for (Jogador jogador : jogadores) {
                         total += jogador.getPontos();
                 }
-
                 return total;
-        }
-
-        //IDENTIFICANDO TIME
-        public String identificarTime (Jogador jogador, Jogador[] timeA, Jogador[] timeB) {
-                for (Jogador jogadorA : timeA) {
-                        if(jogadorA == jogador) {
-                                return "TIME A";
-                        };
-                };
-
-                for (Jogador jogadorB : timeB) {
-                        if (jogadorB == jogador) {
-                                return "TIME B";
-                        };
-                };
-                return "SEM TIME";
-        }
-
-        //RANKING
-        public void exibirRanking(Jogador[] timeA, Jogador[] timeB) {
-                Jogador[] jogadores = merge(timeA, timeB);
-
-                Arrays.sort(jogadores, (j1, j2) ->
-                        Integer.compare(j2.getPontos(), j1.getPontos())
-                );
-
-                System.out.println("\n======================");
-                System.out.println("RANKING DE PONTUADORES");
-                System.out.println("======================\n");
-
-
-                int posicao = 1;
-
-                for (Jogador jogador: jogadores) {
-                        String time = identificarTime(jogador, timeA, timeB);
-                        System.out.println(posicao + "° - " + jogador.getNome() + " - " + time + " - " + jogador.getPontos() + " pontos");
-                        posicao++;
-                }
-
-                //PONTUAÇÃO DE TIMES
-                int pontosTimeA = contaPontos(timeA);
-                int pontosTimeB = contaPontos(timeB);
-
-                System.out.println("\n=================");
-                System.out.println("RANKING DOS TIMES");
-                System.out.println("=================\n");
-
-                if (pontosTimeA > pontosTimeB) {
-                        System.out.println("1° - TIME A: " + pontosTimeA + " pontos");
-                        System.out.println("2° - TIME B: " + pontosTimeB + " pontos");
-                } else if (pontosTimeB > pontosTimeA) {
-                        System.out.println("1° - TIME B: " + pontosTimeB + " pontos");
-                        System.out.println("2° - TIME A: " + pontosTimeA + " pontos");
-
-                }
         }
 }

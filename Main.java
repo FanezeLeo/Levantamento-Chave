@@ -10,7 +10,7 @@ public class Main {
         Service service = new Service();
 
         int timeEscolhido;
-        int opcao;
+        int opcao = -1;
 
         Jogador[] timeA = {
                 new Jogador("Joao", 1, "Levantador"),
@@ -26,7 +26,6 @@ public class Main {
                 new Jogador("Bruno", 8, "Central"),
                 new Jogador("Diego", 9, "Oposto")
         };
-
 
         Jogador[] timeB = {
                 new Jogador("Arthur", 1, "Levantador"),
@@ -56,9 +55,17 @@ public class Main {
             System.out.println("5 - Adicionar um reserva");
             System.out.println("6 - Mostrar jogadores");
             System.out.println("7 - Maiores pontuadores");
+            System.out.println("8 - Mostrar quadra");
+            System.out.println("9 - Pontuação total dos times");
             System.out.println("0 - Finalizar partida");
 
             System.out.print("\nEscolha uma opção: ");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("Entrada inválida! Digite um número.");
+                scanner.next();
+                continue;
+            }
             opcao = scanner.nextInt();
 
             switch (opcao) {
@@ -67,10 +74,12 @@ public class Main {
                     int selecionaTime = random.nextInt(2);
                     int selecionaJogador = random.nextInt(6);
 
-                    if(selecionaTime == 0){
+                    if (selecionaTime == 0) {
                         timeA[selecionaJogador].pontuar();
-                    }else {
+                        System.out.println("\nPonto para o TIME A: " + timeA[selecionaJogador].getNome() + "!");
+                    } else {
                         timeB[selecionaJogador].pontuar();
+                        System.out.println("\nPonto para o TIME B: " + timeB[selecionaJogador].getNome() + "!");
                     }
                     break;
 
@@ -105,19 +114,19 @@ public class Main {
                         if (jogadorReserva == null || jogadorTitular == null) {
                             System.out.println("Jogador não encontrado!");
                             break;
-                        }else {
+                        } else {
                             service.substituir(timeA, reservasA, jogadorTitular, jogadorReserva);
                         }
-                    } else if(timeEscolhido == 2) {
+                    } else if (timeEscolhido == 2) {
                         Jogador jogadorReserva = service.buscarJogadorPorNumero(reservasB, numeroReserva);
                         Jogador jogadorTitular = service.buscarJogadorPorNumero(timeB, numeroTitular);
                         if (jogadorReserva == null || jogadorTitular == null) {
                             System.out.println("Jogador não encontrado!");
                             break;
-                        }else {
+                        } else {
                             service.substituir(timeB, reservasB, jogadorTitular, jogadorReserva);
                         }
-                    }else {
+                    } else {
                         System.out.println("Time inválido!");
                     }
                     break;
@@ -143,7 +152,7 @@ public class Main {
                     scanner.nextLine();
 
                     Jogador novoReserva = new Jogador(nomeReserva, numeroReservaNovo, posicaoReserva);
-                    
+
                     if (timeEscolhido == 1) {
                         reservasA = service.adicionarReserva(reservasA, novoReserva);
                     } else if (timeEscolhido == 2) {
@@ -157,9 +166,23 @@ public class Main {
                     service.mostrarJogadores(timeA, reservasA, "TIME A");
                     service.mostrarJogadores(timeB, reservasB, "TIME B");
                     break;
+
                 case 7:
-                    service.exibirRanking(timeA, timeB);
+                    Jogador[] todosJogadores = service.juntarJogadores(timeA, reservasA, timeB, reservasB);
+                    service.mostrarRanking(todosJogadores);
                     break;
+
+                case 8:
+                    service.mostrarQuadra(timeA, timeB);
+                    break;
+
+                case 9:
+                    int totalA = service.somarPontos(service.juntarJogadores(timeA, reservasA));
+                    int totalB = service.somarPontos(service.juntarJogadores(timeB, reservasB));
+                    System.out.println("\nPontuação total - TIME A: " + totalA + " pontos");
+                    System.out.println("Pontuação total - TIME B: " + totalB + " pontos");
+                    break;
+
                 case 0:
                     System.out.println("Partida encerrada.");
                     scanner.close();
