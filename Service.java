@@ -151,27 +151,80 @@ public class Service {
                 return null;
         }
 
-        public void exibirRanking(Jogador[] timeA, Jogador[] timeB) {
-                Jogador[] jogadores =  new Jogador[timeA.length + timeB.length];
+        //JUNTANDO VETORES
+        public Jogador[] merge(Jogador[] vetorA, Jogador[] vetorB) {
 
-                for (int i = 0; i < timeA.length; i++) {
-                        jogadores[i] = timeA[i];
+                Jogador[] resultado = new Jogador[vetorA.length + vetorB.length];
+
+                System.arraycopy(vetorA, 0, resultado, 0, vetorA.length);
+                System.arraycopy(vetorB, 0, resultado, vetorA.length, vetorB.length);
+
+                return resultado;
+        }
+
+        //CONTANDO PONTOS DE CADA TIME
+        public int contaPontos(Jogador[] jogadores) {
+                int total = 0;
+
+                for (Jogador jogador : jogadores) {
+                        total += jogador.getPontos();
+                }
+
+                return total;
+        }
+
+        //IDENTIFICANDO TIME
+        public String identificarTime (Jogador jogador, Jogador[] timeA, Jogador[] timeB) {
+                for (Jogador jogadorA : timeA) {
+                        if(jogadorA == jogador) {
+                                return "TIME A";
+                        };
                 };
 
-                for (int i = 0; i < timeB.length; i++) {
-                        jogadores[timeA.length + i] = timeB[i];
-                }
+                for (Jogador jogadorB : timeB) {
+                        if (jogadorB == jogador) {
+                                return "TIME B";
+                        };
+                };
+                return "SEM TIME";
+        }
+
+        //RANKING
+        public void exibirRanking(Jogador[] timeA, Jogador[] timeB) {
+                Jogador[] jogadores = merge(timeA, timeB);
 
                 Arrays.sort(jogadores, (j1, j2) ->
                         Integer.compare(j2.getPontos(), j1.getPontos())
                 );
 
-                System.out.println("\n====================");
+                System.out.println("\n======================");
                 System.out.println("RANKING DE PONTUADORES");
-                System.out.println("====================");
+                System.out.println("======================\n");
+
+
+                int posicao = 1;
 
                 for (Jogador jogador: jogadores) {
-                        System.out.println(jogador.getNome() + " - " + jogador.getPontos() + " pontos");
+                        String time = identificarTime(jogador, timeA, timeB);
+                        System.out.println(posicao + "° - " + jogador.getNome() + " - " + time + " - " + jogador.getPontos() + " pontos");
+                        posicao++;
+                }
+
+                //PONTUAÇÃO DE TIMES
+                int pontosTimeA = contaPontos(timeA);
+                int pontosTimeB = contaPontos(timeB);
+
+                System.out.println("\n=================");
+                System.out.println("RANKING DOS TIMES");
+                System.out.println("=================\n");
+
+                if (pontosTimeA > pontosTimeB) {
+                        System.out.println("1° - TIME A: " + pontosTimeA + " pontos");
+                        System.out.println("2° - TIME B: " + pontosTimeB + " pontos");
+                } else if (pontosTimeB > pontosTimeA) {
+                        System.out.println("1° - TIME B: " + pontosTimeB + " pontos");
+                        System.out.println("2° - TIME A: " + pontosTimeA + " pontos");
+
                 }
         }
 }
