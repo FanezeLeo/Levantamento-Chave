@@ -158,7 +158,7 @@ public class Main {
                     service.mostrarJogadores(timeB, reservasB, "TIME B");
                     break;
                 case 7:
-                    
+                    service.exibirRanking(timeA, timeB);
                     break;
                 case 0:
                     System.out.println("Partida encerrada.");
