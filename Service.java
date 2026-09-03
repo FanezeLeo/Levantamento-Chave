@@ -214,9 +214,15 @@ public class Service {
         }
 
         // RANKING
-        public void exibirRanking(Jogador[] timeA, Jogador[] timeB) {
-                Jogador[] jogadores = merge(timeA, timeB);
+        public void exibirRanking(Jogador[] timeA, Jogador[] reservasA, Jogador[] timeB, Jogador[] reservasB) {
+                //JUNTA TITULARES E RESERVAS DE CADA TIME
+                Jogador[] jogadoresTimeA = merge(timeA, reservasA);
+                Jogador[] jogadoresTimeB = merge(timeB, reservasB);
 
+                //JUNTANDO OS TIMES
+                Jogador[] jogadores = merge(jogadoresTimeA, jogadoresTimeB);
+
+                //ORDENAÇÃO
                 Arrays.sort(jogadores, (j1, j2) -> Integer.compare(j2.getPontos(), j1.getPontos()));
 
                 System.out.println("\n======================");
@@ -226,15 +232,15 @@ public class Service {
                 int posicao = 1;
 
                 for (Jogador jogador : jogadores) {
-                        String time = identificarTime(jogador, timeA, timeB);
+                        String time = identificarTime(jogador, jogadoresTimeA, jogadoresTimeB);
                         System.out.println(posicao + "° - " + jogador.getNome() + " - " + time + " - "
                                         + jogador.getPontos() + " pontos");
                         posicao++;
                 }
 
                 // PONTUAÇÃO DE TIMES
-                int pontosTimeA = contaPontos(timeA);
-                int pontosTimeB = contaPontos(timeB);
+                int pontosTimeA = contaPontos(jogadoresTimeA);
+                int pontosTimeB = contaPontos(jogadoresTimeB);
 
                 System.out.println("\n=================");
                 System.out.println("RANKING DOS TIMES");
