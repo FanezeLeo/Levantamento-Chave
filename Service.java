@@ -239,8 +239,8 @@ public class Service {
                 }
 
                 // PONTUAÇÃO DE TIMES
-                int pontosTimeA = contaPontos(jogadoresTimeA);
-                int pontosTimeB = contaPontos(jogadoresTimeB);
+                int pontosTimeA = contaPontos(timeA);
+                int pontosTimeB = contaPontos(timeB);
 
                 System.out.println("\n=================");
                 System.out.println("RANKING DOS TIMES");
