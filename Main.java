@@ -69,9 +69,15 @@ public class Main {
 
                     if(selecionaTime == 0){
                         timeA[selecionaJogador].pontuar();
+                        System.out.println("Time A marcou ponto com o jogador " + timeA[selecionaJogador].getNome() + "!\n\n");
+                        
                     }else {
                         timeB[selecionaJogador].pontuar();
+                        System.out.println("Time B marcou ponto com o jogador " + timeB[selecionaJogador].getNome() + "!\n\n");
                     }
+                    int pontosTimeA = service.contaPontos(service.merge(timeA, reservasA));
+                    int pontosTimeB = service.contaPontos(service.merge(timeB, reservasB));
+                    service.mostrarQuadra(timeA, timeB, pontosTimeA, pontosTimeB);
                     break;
 
                 case 2:
