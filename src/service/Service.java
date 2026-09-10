@@ -1,3 +1,7 @@
+package service;
+
+import entidade.Jogador;
+
 import java.util.Arrays;
 
 public class Service {

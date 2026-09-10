@@ -1,3 +1,5 @@
+package entidade;
+
 public class Jogador {
 
     private String nome;
