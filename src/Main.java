@@ -1,3 +1,6 @@
+import entidade.Jogador;
+import service.Service;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -67,11 +70,11 @@ public class Main {
                     int selecionaTime = random.nextInt(2);
                     int selecionaJogador = random.nextInt(6);
 
-                    if(selecionaTime == 0){
+                    if (selecionaTime == 0) {
                         timeA[selecionaJogador].pontuar();
                         System.out.println("Time A marcou ponto com o jogador " + timeA[selecionaJogador].getNome() + "!\n\n");
-                        
-                    }else {
+
+                    } else {
                         timeB[selecionaJogador].pontuar();
                         System.out.println("Time B marcou ponto com o jogador " + timeB[selecionaJogador].getNome() + "!\n\n");
                     }
@@ -111,19 +114,19 @@ public class Main {
                         if (jogadorReserva == null || jogadorTitular == null) {
                             System.out.println("Jogador não encontrado!");
                             break;
-                        }else {
+                        } else {
                             service.substituir(timeA, reservasA, jogadorTitular, jogadorReserva);
                         }
-                    } else if(timeEscolhido == 2) {
+                    } else if (timeEscolhido == 2) {
                         Jogador jogadorReserva = service.buscarJogadorPorNumero(reservasB, numeroReserva);
                         Jogador jogadorTitular = service.buscarJogadorPorNumero(timeB, numeroTitular);
                         if (jogadorReserva == null || jogadorTitular == null) {
                             System.out.println("Jogador não encontrado!");
                             break;
-                        }else {
+                        } else {
                             service.substituir(timeB, reservasB, jogadorTitular, jogadorReserva);
                         }
-                    }else {
+                    } else {
                         System.out.println("Time inválido!");
                     }
                     break;
@@ -149,7 +152,7 @@ public class Main {
                     scanner.nextLine();
 
                     Jogador novoReserva = new Jogador(nomeReserva, numeroReservaNovo, posicaoReserva);
-                    
+
                     if (timeEscolhido == 1) {
                         reservasA = service.adicionarReserva(reservasA, novoReserva);
                     } else if (timeEscolhido == 2) {
